@@ -1,0 +1,91 @@
+.header { margin-bottom: 2rem; }
+.title { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; }
+.sub { font-size: 0.9rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+.kanban {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.column {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.colHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1rem;
+  border-bottom: 1.5px solid var(--border);
+}
+
+.colCount {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.colCards {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 80px;
+}
+
+.emptyCol {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-faint);
+  padding: 1rem;
+}
+
+.taskCard {
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+  cursor: pointer;
+  transition: all 0.18s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.taskCard:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.taskProject {
+  font-size: 0.72rem;
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.taskTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.taskFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.25rem;
+}
+
+.due {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.overdue { color: var(--danger) !important; }

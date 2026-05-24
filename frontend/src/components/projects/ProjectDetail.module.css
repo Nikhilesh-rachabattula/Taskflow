@@ -1,0 +1,151 @@
+.header { margin-bottom: 1.5rem; }
+
+.backBtn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.88rem;
+  padding: 0;
+  margin-bottom: 0.75rem;
+  transition: color 0.15s;
+  font-family: var(--font-body);
+}
+
+.backBtn:hover { color: var(--text); }
+
+.headerMain {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.title { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; }
+.desc { font-size: 0.9rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+.tabs {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 1.5px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+
+.tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0.65rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  margin-bottom: -1.5px;
+  transition: color 0.15s;
+  font-family: var(--font-body);
+}
+
+.tab:hover { color: var(--text); }
+
+.activeTab {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.filters {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.taskRow {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: border-color 0.2s;
+}
+
+.taskRow:hover { border-color: var(--border-light); }
+
+.taskMain { flex: 1; min-width: 0; }
+
+.taskTitle {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.taskDesc {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.taskMeta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.assignee {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.dueDate {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.overdue { color: var(--danger) !important; }
+
+.taskActions {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.memberList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.memberRow {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.9rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.memberAvatar {
+  width: 36px; height: 36px;
+  background: var(--surface-3);
+  color: var(--text-muted);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.memberInfo { flex: 1; }
+.memberName { font-weight: 600; font-size: 0.95rem; }
+.memberEmail { font-size: 0.82rem; color: var(--text-muted); }
