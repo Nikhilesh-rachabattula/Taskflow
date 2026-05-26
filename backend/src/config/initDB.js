@@ -26,11 +26,11 @@ const initDB = async () => {
     `);
 
     await client.query(`
-      DO $ BEGIN
+      DO $$ BEGIN
         CREATE TYPE project_role AS ENUM ('admin', 'member');
       EXCEPTION
         WHEN duplicate_object THEN null;
-      END $;
+      END $$;
     `);
 
     await client.query(`
