@@ -2,77 +2,83 @@
 
 A full-stack team task management application built with React, Node.js/Express, and PostgreSQL.
 
-## Features
+## 🔗 Live Demo
 
-- **Auth**: JWT-based signup/login with protected routes
-- **Projects**: Create projects, invite members via email, role-based access (Admin/Member)
-- **Tasks**: Create, assign, filter, and update tasks with priority levels and due dates
-- **Dashboard**: Real-time stats — total tasks, tasks by status, per-user breakdown, overdue count
-- **Role-Based Access**: Admins manage everything; Members can only update status of assigned tasks
-- **Kanban View**: My Tasks page shows tasks grouped by status in a Kanban layout
+- **Frontend:** https://frontend-production-73f7.up.railway.app
+- **Backend API:** https://backend-production-88ca.up.railway.app/api/health
+- **GitHub:** https://github.com/Nikhilesh-rachabattula/Taskflow
 
-## Tech Stack
+## ✨ Features
 
-| Layer      | Technology                        |
-|------------|-----------------------------------|
-| Frontend   | React 18, React Router v6, Vite   |
-| Backend    | Node.js, Express 4                |
-| Database   | PostgreSQL                        |
-| Auth       | JWT (jsonwebtoken), bcryptjs      |
-| Deployment | Railway                           |
+- **Auth** — JWT-based signup/login with bcrypt password hashing and protected routes
+- **Projects** — Create projects, invite members via email, role-based access (Admin/Member)
+- **Tasks** — Create, assign, filter, and update tasks with priority levels and due dates
+- **Dashboard** — Real-time stats: total tasks, tasks by status, per-user breakdown, overdue count
+- **Role-Based Access** — Admins manage everything; Members can only update status of their own tasks
+- **Kanban View** — My Tasks page shows tasks grouped by status in a Kanban layout
 
-## Project Structure
+## 🛠 Tech Stack
+
+| Layer      | Technology                          |
+|------------|-------------------------------------|
+| Frontend   | React 18, React Router v6, Vite     |
+| Backend    | Node.js, Express 4                  |
+| Database   | PostgreSQL                          |
+| Auth       | JWT (jsonwebtoken), bcryptjs        |
+| Deployment | Railway                             |
+
+## 📁 Project Structure
 
 ```
 taskflow/
 ├── backend/
 │   ├── src/
 │   │   ├── config/       # DB connection & schema init
-│   │   ├── controllers/  # Business logic
-│   │   ├── middleware/   # JWT auth
-│   │   └── routes/       # API routes
+│   │   ├── controllers/  # Business logic (auth, projects, tasks)
+│   │   ├── middleware/   # JWT auth middleware
+│   │   └── routes/       # API route definitions
 │   ├── .env.example
 │   └── package.json
 └── frontend/
     ├── src/
-    │   ├── components/   # React components
-    │   ├── context/      # Auth context
-    │   └── utils/        # Axios instance
+    │   ├── components/   # React components (auth, dashboard, projects, tasks)
+    │   ├── context/      # Auth context (global user state)
+    │   └── utils/        # Axios instance with JWT interceptor
     ├── .env.example
     └── package.json
 ```
 
-## API Endpoints
+## 🔌 API Endpoints
 
 ### Auth
-| Method | Endpoint          | Description     |
-|--------|-------------------|-----------------|
-| POST   | /api/auth/signup  | Register user   |
-| POST   | /api/auth/login   | Login user      |
-| GET    | /api/auth/me      | Get current user|
+| Method | Endpoint         | Description      | Auth Required |
+|--------|------------------|------------------|---------------|
+| POST   | /api/auth/signup | Register user    | ❌            |
+| POST   | /api/auth/login  | Login user       | ❌            |
+| GET    | /api/auth/me     | Get current user | ✅            |
 
 ### Projects
-| Method | Endpoint                              | Description          |
-|--------|---------------------------------------|----------------------|
-| GET    | /api/projects                         | Get my projects      |
-| POST   | /api/projects                         | Create project       |
-| GET    | /api/projects/:id                     | Get project details  |
-| DELETE | /api/projects/:id                     | Delete project (admin)|
-| GET    | /api/projects/:id/members             | Get members          |
-| POST   | /api/projects/:id/members             | Add member (admin)   |
-| DELETE | /api/projects/:id/members/:userId     | Remove member (admin)|
+| Method | Endpoint                          | Description           | Role  |
+|--------|-----------------------------------|-----------------------|-------|
+| GET    | /api/projects                     | Get my projects       | Any   |
+| POST   | /api/projects                     | Create project        | Any   |
+| GET    | /api/projects/:id                 | Get project details   | Any   |
+| DELETE | /api/projects/:id                 | Delete project        | Admin |
+| GET    | /api/projects/:id/members         | Get members           | Any   |
+| POST   | /api/projects/:id/members         | Add member            | Admin |
+| DELETE | /api/projects/:id/members/:userId | Remove member         | Admin |
 
 ### Tasks
-| Method | Endpoint                                  | Description           |
-|--------|-------------------------------------------|-----------------------|
-| GET    | /api/tasks/my                             | My assigned tasks     |
-| GET    | /api/tasks/dashboard                      | Dashboard stats       |
-| GET    | /api/tasks/projects/:id                   | Project tasks (filter)|
-| POST   | /api/tasks/projects/:id                   | Create task (admin)   |
-| PUT    | /api/tasks/projects/:id/:taskId           | Update task           |
-| DELETE | /api/tasks/projects/:id/:taskId           | Delete task (admin)   |
+| Method | Endpoint                            | Description         | Role         |
+|--------|-------------------------------------|---------------------|--------------|
+| GET    | /api/tasks/my                       | My assigned tasks   | Any          |
+| GET    | /api/tasks/dashboard                | Dashboard stats     | Any          |
+| GET    | /api/tasks/projects/:id             | Project tasks       | Any          |
+| POST   | /api/tasks/projects/:id             | Create task         | Admin        |
+| PUT    | /api/tasks/projects/:id/:taskId     | Update task         | Admin/Member |
+| DELETE | /api/tasks/projects/:id/:taskId     | Delete task         | Admin        |
 
-## Local Setup
+## ⚙️ Local Setup
 
 ### Prerequisites
 - Node.js 18+
@@ -100,70 +106,79 @@ npm run dev
 
 App runs at: `http://localhost:5173`
 
-## Railway Deployment
+## 🚀 Railway Deployment
 
-### 1. Create two Railway services from your GitHub repo
-
-Deploy both `backend/` and `frontend/` as separate services.
-
-### 2. Backend Environment Variables (Railway Dashboard)
-
-```
-DATABASE_URL=<Railway PostgreSQL URL>
-JWT_SECRET=<a long random string>
-NODE_ENV=production
-FRONTEND_URL=<your frontend Railway URL>
-PORT=5000
+### 1. Push code to GitHub
+```bash
+git init
+git add .
+git commit -m "initial commit"
+git remote add origin https://github.com/YOUR_USERNAME/taskflow.git
+git push -u origin main
 ```
 
-### 3. Add PostgreSQL
+### 2. Create Railway project
+- Go to [railway.app](https://railway.app) → New Project → Empty Project
+- Add a **PostgreSQL** database service first
 
-In your Railway project, click **+ New** → **Database** → **PostgreSQL**.  
-The `DATABASE_URL` will be auto-injected.
-
-### 4. Frontend Environment Variables
+### 3. Deploy Backend
+- Add Service → GitHub Repo → select your repo
+- Settings → Root Directory → set to `backend`
+- Add these environment variables:
 
 ```
-VITE_API_URL=https://<your-backend-railway-url>/api
+DATABASE_URL   = <auto-copied from PostgreSQL service>
+JWT_SECRET     = <any long random string>
+NODE_ENV       = production
+PORT           = 5000
+FRONTEND_URL   = <your frontend Railway URL>
 ```
 
-> ⚠️ Rebuild the frontend after setting env vars (Railway does this automatically on deploy).
+- Settings → Networking → Generate Domain → copy the backend URL
 
-### 5. Root Directory Config
+### 4. Deploy Frontend
+- Add Service → GitHub Repo → same repo
+- Settings → Root Directory → set to `frontend`
+- Add environment variable:
 
-In Railway service settings, set the **Root Directory** to:
-- `backend` for the backend service
-- `frontend` for the frontend service
+```
+VITE_API_URL = https://<your-backend-url>.up.railway.app/api
+```
 
-## Database Schema
+- Settings → Networking → Generate Domain
 
-The schema is **auto-initialized** on first server start — no manual migrations needed.
+> ⚠️ After setting `VITE_*` variables, always **Redeploy** the frontend — Vite bakes env vars at build time.
+
+## 🗄️ Database Schema
+
+Schema is **auto-initialized** on first server start — no manual migrations needed.
 
 ```sql
-users         → id, name, email, password, created_at
-projects      → id, name, description, created_by, created_at
-project_members → project_id, user_id, role (admin|member)
-tasks         → id, title, description, project_id, assigned_to, 
-                created_by, status, priority, due_date, created_at
+users           → id, name, email, password, created_at
+projects        → id, name, description, created_by, created_at
+project_members → project_id, user_id, role (admin|member), joined_at
+tasks           → id, title, description, project_id, assigned_to,
+                  created_by, status, priority, due_date, created_at, updated_at
 ```
 
-## Role Permissions
+## 🔐 Role Permissions
 
-| Action                  | Admin | Member         |
-|-------------------------|-------|----------------|
-| Create project          | ✅    | ✅             |
-| Add/remove members      | ✅    | ❌             |
-| Create tasks            | ✅    | ❌             |
-| Update any task field   | ✅    | ❌             |
-| Update assigned task status | ✅ | ✅ (own tasks) |
-| Delete tasks/projects   | ✅    | ❌             |
+| Action                       | Admin | Member          |
+|------------------------------|-------|-----------------|
+| Create project               | ✅    | ✅              |
+| Add / remove members         | ✅    | ❌              |
+| Create tasks                 | ✅    | ❌              |
+| Update any task field        | ✅    | ❌              |
+| Update own assigned task status | ✅ | ✅              |
+| Delete tasks / projects      | ✅    | ❌              |
 
-## Demo Video Outline (2-5 min)
+## 🎬 Demo Video Outline (2–5 min)
 
-1. Show the live URL and signup flow
-2. Create a project → becomes admin automatically
+1. Show live URL and signup flow
+2. Create a project → auto-assigned as Admin
 3. Add a team member via email
-4. Create tasks with different priorities and due dates
-5. Show the member's view (limited permissions)
-6. Show the dashboard stats
-7. Show My Tasks kanban view
+4. Create tasks with priorities and due dates
+5. Login as Member → show restricted permissions
+6. Member updates task status
+7. Show Dashboard stats update in real time
+8. Show My Tasks Kanban view
