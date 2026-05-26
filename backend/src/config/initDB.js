@@ -26,8 +26,12 @@ const initDB = async () => {
     `);
 
     await client.query(`
-      CREATE TYPE IF NOT EXISTS project_role AS ENUM ('admin', 'member');
-    `).catch(() => {}); // ignore if type exists
+      DO $ BEGIN
+        CREATE TYPE project_role AS ENUM ('admin', 'member');
+      EXCEPTION
+        WHEN duplicate_object THEN null;
+      END $;
+    `);
 
     await client.query(`
       CREATE TABLE IF NOT EXISTS project_members (
