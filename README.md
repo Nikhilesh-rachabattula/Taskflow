@@ -172,13 +172,4 @@ tasks           → id, title, description, project_id, assigned_to,
 | Update own assigned task status | ✅ | ✅              |
 | Delete tasks / projects      | ✅    | ❌              |
 
-## 🎬 Demo Video Outline (2–5 min)
 
-1. Show live URL and signup flow
-2. Create a project → auto-assigned as Admin
-3. Add a team member via email
-4. Create tasks with priorities and due dates
-5. Login as Member → show restricted permissions
-6. Member updates task status
-7. Show Dashboard stats update in real time
-8. Show My Tasks Kanban view
